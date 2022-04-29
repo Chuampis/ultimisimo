@@ -34,7 +34,7 @@ const agregarAlCarrito = (idProducto) => {
     Toastify({
         text: `Agregaste ${productoAgregado.titulo} al carrito` ,
         duration: 1600,
-        destination: "https://github.com/apvarun/toastify-js",
+        destination: "../cart/index.html",
         newWindow: true,
         close: false,
         gravity: "bottom", // `top` or `bottom`
