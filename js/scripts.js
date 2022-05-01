@@ -1,15 +1,16 @@
-// CREO ARRAY PRODUCTOS
+// CREO PRODUCTOS
 const productos = [
-    { id: 0, categoria: 'Calzado', titulo: 'Alpargatas Animal Print', precio: 2200, stock: 0, img: "../../assets/images/tienda/img001.jpg" },
-    { id: 1, categoria: 'Calzado', titulo: 'Alpargatas Azul', precio: 1750, stock: 10, img: "../../assets/images/tienda/img002.jpg" },
-    { id: 2, categoria: 'Cuchillos', titulo: 'Cuchillo Criollo', precio: 1400, stock: 5, img: "../../assets/images/tienda/img003.jpg" },
-    { id: 3, categoria: 'Cuchillos', titulo: 'Cuchillo La Mission', precio: 800, stock: 20, img: "../../assets/images/tienda/img004.jpg" },
-    { id: 4, categoria: 'Bolsos', titulo: 'Chuna Autobag', precio: 2200, stock: 0, img: "../../assets/images/tienda/img005.jpg" },
-    { id: 5, categoria: 'Bolsos', titulo: 'Bolso Matero Chuna Amarillo', precio: 2200, stock: 0, img: "../../assets/images/tienda/img006.jpg" },
-    { id: 6, categoria: 'Mates', titulo: 'Mates Chuna', precio: 2200, stock: 15, img: "../../assets/images/tienda/img007.jpg" },
-    { id: 7, categoria: 'Mates', titulo: 'Mates Jarrito', precio: 2000, stock: 20, img: "../../assets/images/tienda/img008.jpg" },
-    { id: 8, categoria: 'Accesorios Calzado', titulo: 'Plantillas Corderito', precio: 200, stock: 0, img: "../../assets/images/tienda/img009.jpg" },
-    { id: 9, categoria: 'Accesorios Calzado', titulo: 'Plantillas Ortopedicas', precio: 220, stock: 80, img: "../../assets/images/tienda/img010.jpg" },
+    { id: 0, categoria: 'Bolsos', titulo: 'Portamate Floreado', precio: 1200, stock: 0, img: "../../assets/images/tienda/img001.jpg" },
+    { id: 1, categoria: 'Mates', titulo: 'Mates Pampa Plastico', precio: 750, stock: 10, img: "../../assets/images/tienda/img002.jpg" },
+    { id: 2, categoria: 'Bolsos', titulo: 'Bolso Chuna Amarillo', precio: 1400, stock: 5, img: "../../assets/images/tienda/img003.jpg" },
+    { id: 3, categoria: 'Calzado', titulo: 'Nauticas Camufladas', precio: 1400, stock: 20, img: "../../assets/images/tienda/img116.jpg" },
+    { id: 4, categoria: 'Calzado', titulo: 'Alpargatas Azul con lunares', precio: 1200, stock: 0, img: "../../assets/images/tienda/img162.jpg" },
+    { id: 5, categoria: 'Calzado', titulo: 'Alpargatas verdes', precio: 1200, stock: 0, img: "../../assets/images/tienda/img177.jpg" },
+    { id: 6, categoria: 'Mates', titulo: 'Mate Chuna Rosa', precio: 1100, stock: 15, img: "../../assets/images/tienda/img035.jpg" },
+    { id: 7, categoria: 'Mates', titulo: 'Mate Chuna Celeste', precio: 1100, stock: 20, img: "../../assets/images/tienda/img024.jpg" },
+    { id: 8, categoria: 'Cuchillo', titulo: 'Set Asador La Mision 01', precio: 2500, stock: 0, img: "../../assets/images/tienda/img095.jpg" },
+    { id: 8, categoria: 'Cuchillo', titulo: 'Set Asador La Mision 02', precio: 2500, stock: 0, img: "../../assets/images/tienda/img098.jpg" },
+    { id: 9, categoria: 'Cuchillo', titulo: 'Set Asador La Mision 03', precio: 2500, stock: 80, img: "../../assets/images/tienda/img097.jpg" },
 ];
 
 const agregarAlCarrito = (idProducto) => {
@@ -32,7 +33,7 @@ const agregarAlCarrito = (idProducto) => {
 
     // Agrego Libreria Toastify
     Toastify({
-        text: `Agregaste ${productoAgregado.titulo} al carrito` ,
+        text: `Agregaste ${productoAgregado.titulo} al carrito`,
         duration: 1600,
         destination: "../cart/index.html",
         newWindow: true,
@@ -41,15 +42,15 @@ const agregarAlCarrito = (idProducto) => {
         position: "right", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-          background: "linear-gradient(to right, #8c140b, #dfc8a5)",
+            background: "linear-gradient(to right, #8c140b, #dfc8a5)",
         },
-        onClick: function(agregarAlCarrito){} // Callback after click
-      }).showToast();
-    };
+        onClick: function (agregarAlCarrito) { } // Callback after click
+    }).showToast();
+};
 
 
-    // Captura para ir a Detalle Producto
-    const irAlProducto = (idProducto) => {
+// Captura para ir a Detalle Producto
+const irAlProducto = (idProducto) => {
     // Busca el producto
     const productoQueQuiereVer = productos.find(producto => producto.id === idProducto);
 
@@ -155,3 +156,10 @@ const filtrar = () => {
 boton.addEventListener('click', filtrar)
 buscaProductos.addEventListener('keyup', filtrar)
 // FIN BUSCADOR
+
+// Fetch de api precio dolar
+fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
+    .then(response => response.json())
+    .then(data => document.getElementById("dolar-blue").innerHTML = (data[1].casa.venta));
+
+
